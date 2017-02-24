@@ -16,7 +16,7 @@ public class MenuState extends AbstractState {
     // ATTRIBUTS
 
     private BufferedImage image;
-    private Audio audio;
+    // private Audio audio;
 
     // CONSTRUCTEUR
 
@@ -33,8 +33,8 @@ public class MenuState extends AbstractState {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        audio = new Audio("intro.wav");
-        audio.play();
+        // audio = new Audio("intro.wav");
+        // audio.play();
     }
 
     public void draw(Graphics g, int x, int y) {
