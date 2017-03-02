@@ -2,15 +2,17 @@ package View;
 
 import StateManager.StateManager;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JComponent {
 
     // CONSTANTES
 
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
+    static final int WIDTH = 800;
+    static final int HEIGHT = 600;
 
     // ATTRIBUTS
 
@@ -22,6 +24,7 @@ public class GamePanel extends JPanel {
         super();
         createModel();
         createView();
+        createController();
     }
 
     private void createView() {
@@ -32,23 +35,29 @@ public class GamePanel extends JPanel {
         stateManager = new StateManager();
     }
 
+    private void createController() {
+        this.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                stateManager.mousePressed(e.getButton(), e.getX(), e.getY());
+                repaint();
+            }
+
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                stateManager.mouseReleased(e.getButton(), e.getX(), e.getY());
+                repaint();
+            }
+        });
+    }
+
     public void paintComponent(Graphics g) {
         stateManager.draw(g, 0, 0);
     }
 
-    public void keyPressed(int k) {
+    void keyPressed(int k) {
         stateManager.keyPressed(k);
         repaint();
     }
-
-    void keyReleased(int k) {
-
-    }
-
-    void mousePressed(int button, int x, int y) {
-        System.out.println("Pressed in Game Panel");
-        stateManager.mousePressed(button, x, y);
-    }
-
 
 }

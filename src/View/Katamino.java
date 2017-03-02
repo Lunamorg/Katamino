@@ -1,10 +1,8 @@
 package View;
 
-import StateManager.StateManager;
-
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Katamino {
 
@@ -47,16 +45,8 @@ public class Katamino {
                 gamePanel.keyPressed(e.getKeyCode());
             }
 
-            public void keyReleased(KeyEvent e) {
-                gamePanel.keyReleased(e.getKeyCode());
-            }
         });
 
-        mainFrame.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-                gamePanel.mousePressed(e.getButton(), e.getX(), e.getY());
-            }
-        });
     }
 
     // POINT D'ENTREE
