@@ -49,4 +49,8 @@ public class StateManager {
         stateManager.get(currentState).mousePressed(button, x, y);
     }
 
+    public void mouseReleased(int button, int x, int y) {
+        stateManager.get(currentState).mouseReleased(button, x, y);
+    }
+
 }

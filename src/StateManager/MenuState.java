@@ -3,12 +3,10 @@ package StateManager;
 import Audio.Audio;
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import static java.awt.event.KeyEvent.VK_ENTER;
 
 public class MenuState extends AbstractState {
@@ -16,7 +14,7 @@ public class MenuState extends AbstractState {
     // ATTRIBUTS
 
     private BufferedImage image;
-    // private Audio audio;
+    private Audio audio;
 
     // CONSTRUCTEUR
 
@@ -33,8 +31,8 @@ public class MenuState extends AbstractState {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // audio = new Audio("intro.wav");
-        // audio.play();
+        audio = new Audio("intro.wav");
+        audio.play();
     }
 
     public void draw(Graphics g, int x, int y) {
@@ -48,12 +46,5 @@ public class MenuState extends AbstractState {
                 stateManager.setState(StateManager.GAME_STATE);
                 break;
         }
-    }
-
-    public void keyReleased(int k) {
-    }
-
-    public void mousePressed(int button, int x, int y) {
-
     }
 }

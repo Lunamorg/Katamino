@@ -1,5 +1,6 @@
 package StateManager;
 
+import Audio.Audio;
 import View.Board;
 
 import java.awt.Graphics;
@@ -9,6 +10,7 @@ public class GameState extends AbstractState {
     // ATTRIBUTS
 
     private Board board;
+    private Audio selectedClic;
 
     // CONSTRUCTEUR
 
@@ -18,22 +20,24 @@ public class GameState extends AbstractState {
 
     public void init() {
         board = new Board();
+        selectedClic = new Audio("click.wav");
     }
 
     public void draw(Graphics g, int x, int y) {
         board.draw(g);
     }
 
-    public void keyPressed(int k) {
-
-    }
-
-    public void keyReleased(int k) {
-
-    }
-
     public void mousePressed(int button, int x, int y) {
-        System.out.println("Clic in GameState : " + x + " ; " + y);
-        System.out.println("Tiles : " + x / 30 + " ; " + y / 30);
+        board.mousePressed(button, x, y);
+        selectedClic.play();
+    }
+
+    public void mouseReleased(int button, int x, int y) {
+        board.mouseReleased(button, x, y);
+        selectedClic.stop();
+    }
+
+    public void keyPressed(int key) {
+        board.keyPressed(key);
     }
 }
